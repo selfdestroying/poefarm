@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 // interface Ratio {
 // 	itemName: string
 // 	necropolisValue: number
@@ -10,12 +8,15 @@ import axios from 'axios'
 // type valuesRatio = Ratio[]
 
 export const handler = async () => {
-	const necropolis = await axios.get(
+	const necropolis = await fetch(
 		'https://poe.ninja/api/data/currencyoverview?league=Necropolis&type=Currency'
 	)
-	const standard = await axios.get(
+	const standard = await fetch(
 		'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
 	)
+
+	necropolis = await necropolis.json()
+	standard = await standard.json()
 
 	const resultNecropolis = []
 	const resultStandard = []
