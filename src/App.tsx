@@ -22,8 +22,8 @@ function App() {
 						{data.valueRatio.map((ratio: any) => (
 							<div className='card'>
 								<h4>{ratio.itemName} </h4>
-								<p>Necropolis value: {ratio.necropolisValue}</p>
-								<p>Standard value: {ratio.standardValue}</p>
+								<p>Necropolis buying price: {ratio.necropolisValue}</p>
+								<p>Standard selling price: {ratio.standardValue}</p>
 								<p>Value ratio: {ratio.valueRatio}</p>
 							</div>
 						))}

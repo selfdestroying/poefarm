@@ -8,20 +8,20 @@
 // type valuesRatio = Ratio[]
 
 export const handler = async () => {
-	let necropolis = await fetch(
+	const necropolisResponse = await fetch(
 		'https://poe.ninja/api/data/currencyoverview?league=Necropolis&type=Currency'
 	)
-	let standard = await fetch(
+	const standardResponse = await fetch(
 		'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
 	)
 
-	necropolis = await necropolis.json()
-	standard = await standard.json()
+	const necropolis = await necropolisResponse.json()
+	const standard = await standardResponse.json()
 
 	const resultNecropolis = []
 	const resultStandard = []
 
-	necropolis.data.lines.forEach(line => {
+	necropolis.lines.forEach(line => {
 		resultNecropolis.push({
 			currencyTypeName: line.currencyTypeName,
 			receive: {
@@ -30,11 +30,11 @@ export const handler = async () => {
 		})
 	})
 
-	standard.data.lines.forEach(line => {
+	standard.lines.forEach(line => {
 		resultStandard.push({
 			currencyTypeName: line.currencyTypeName,
 			receive: {
-				value: line.receive ? line.receive.value : 0,
+				value: line.chaosEquivalent ? line.chaosEquivalent : 0,
 			},
 		})
 	})
