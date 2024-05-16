@@ -1,8 +1,7 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import './App.css'
 
 function App() {
-	const queryClient = useQueryClient()
 	const { isLoading, isFetching, error, data, refetch } = useQuery({
 		queryKey: ['currency'],
 		queryFn: () =>
@@ -20,7 +19,7 @@ function App() {
 					<p>Loading...</p>
 				) : (
 					<>
-						{data.valueRatio.map(ratio => (
+						{data.valueRatio.map((ratio: any) => (
 							<div className='card'>
 								<h4>{ratio.itemName} </h4>
 								<p>Necropolis value: {ratio.necropolisValue}</p>
