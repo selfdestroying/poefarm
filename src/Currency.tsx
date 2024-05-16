@@ -2,8 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { NavLink } from 'react-router-dom'
 import './App.css'
 
-const CATEGORIES = ['Currency', 'Scarab']
-
 function Currency() {
 	const { isLoading, isFetching, error, data, refetch } = useQuery({
 		queryKey: ['currency'],
