@@ -49,7 +49,7 @@ export const handler = async () => {
 				itemName: item.currencyTypeName,
 				necropolisValue: item.receive.value,
 				standardValue: standardItem.receive.value,
-				valueRatio: item.receive.value / standardItem.receive.value,
+				valueRatio: standardItem.receive.value / item.receive.value,
 			})
 		}
 	})
