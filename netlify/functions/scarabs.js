@@ -9,10 +9,10 @@
 
 export const handler = async () => {
 	const necropolisResponse = await fetch(
-		'https://poe.ninja/api/data/currencyoverview?league=Necropolis&type=Currency'
+		'https://poe.ninja/api/data/itemoverview?league=Necropolis&type=Scarab'
 	)
 	const standardResponse = await fetch(
-		'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
+		'https://poe.ninja/api/data/itemoverview?league=Standard&type=Scarab'
 	)
 
 	const necropolis = await necropolisResponse.json()
@@ -23,18 +23,18 @@ export const handler = async () => {
 
 	necropolis.lines.forEach(line => {
 		resultNecropolis.push({
-			currencyTypeName: line.currencyTypeName,
+			currencyTypeName: line.name,
 			receive: {
-				value: line.receive ? line.receive.value : 0,
+				value: line.chaosValue ? line.chaosValue : 0,
 			},
 		})
 	})
 
 	standard.lines.forEach(line => {
 		resultStandard.push({
-			currencyTypeName: line.currencyTypeName,
+			currencyTypeName: line.name,
 			receive: {
-				value: line.receive ? line.receive.value : 0,
+				value: line.chaosValue ? line.chaosValue : 0,
 			},
 		})
 	})
