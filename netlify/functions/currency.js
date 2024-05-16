@@ -8,10 +8,10 @@
 // type valuesRatio = Ratio[]
 
 export const handler = async () => {
-	const necropolis = await fetch(
+	let necropolis = await fetch(
 		'https://poe.ninja/api/data/currencyoverview?league=Necropolis&type=Currency'
 	)
-	const standard = await fetch(
+	let standard = await fetch(
 		'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
 	)
 
