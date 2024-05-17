@@ -1,13 +1,15 @@
-import { NavLink } from 'react-router-dom'
+import CategoryLink from './CategoryItem'
 import { CATEGORIES } from './constants'
 
 const App = () => {
 	return (
-		<div style={{ display: 'flex', gap: '10px' }}>
-			{CATEGORIES.map(category => (
-				<NavLink key={category.slug} to={'/' + category.title}>
-					{category.title}
-				</NavLink>
+		<div className='nav'>
+			{CATEGORIES.map((category, index) => (
+				<CategoryLink
+					key={index}
+					category={category.title}
+					icon={category.icon}
+				/>
 			))}
 		</div>
 	)
