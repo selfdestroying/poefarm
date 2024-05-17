@@ -1,26 +1,32 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import App from './App.tsx'
-import Currency from './Currency.tsx'
-import Scarabs from './Scarabs.tsx'
+import {
+	RouteObject,
+	RouterProvider,
+	createBrowserRouter,
+} from 'react-router-dom'
+import App from './App'
+import Page from './Page'
+import { CATEGORIES } from './constants'
 import './index.css'
 
-const queryClient = new QueryClient()
-const router = createBrowserRouter([
+const routes: RouteObject[] = [
 	{
 		path: '/',
 		element: <App />,
 	},
-	{
-		path: '/currency',
-		element: <Currency />,
-	},
-	{
-		path: '/scarabs',
-		element: <Scarabs />,
-	},
-])
+]
+for (const category of CATEGORIES) {
+	routes.push({
+		path: `/${category.title}`,
+		element: <Page slug={category.slug} />,
+		action: () => {
+			return queryClient.refetchQueries()
+		},
+	})
+}
+const queryClient = new QueryClient()
+const router = createBrowserRouter(routes)
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<QueryClientProvider client={queryClient}>
 		<RouterProvider router={router} />

@@ -7,34 +7,46 @@
 
 // type valuesRatio = Ratio[]
 
-export const handler = async () => {
+export const handler = async (event, context) => {
+	const type = event.queryStringParameters.slug
+	let slug = ''
+	if (type == 'Currency' || type == 'Fragment') {
+		slug = 'currencyoverview'
+	} else {
+		slug = 'itemoverview'
+	}
 	const necropolisResponse = await fetch(
-		'https://poe.ninja/api/data/currencyoverview?league=Necropolis&type=Currency'
+		`https://poe.ninja/api/data/${slug}?league=Necropolis&type=${type}`
 	)
 	const standardResponse = await fetch(
-		'https://poe.ninja/api/data/currencyoverview?league=Standard&type=Currency'
+		`https://poe.ninja/api/data/${slug}?league=Standard&type=${type}`
 	)
 
 	const necropolis = await necropolisResponse.json()
 	const standard = await standardResponse.json()
 
+	console.log(standardResponse.url)
 	const resultNecropolis = []
 	const resultStandard = []
 
 	necropolis.lines.forEach(line => {
 		resultNecropolis.push({
-			currencyTypeName: line.currencyTypeName,
+			currencyTypeName: line.currencyTypeName
+				? line.currencyTypeName
+				: line.name,
 			receive: {
-				value: line.receive ? line.receive.value : 0,
+				value: line.chaosEquivalent ? line.chaosEquivalent : line.chaosValue,
 			},
 		})
 	})
 
 	standard.lines.forEach(line => {
 		resultStandard.push({
-			currencyTypeName: line.currencyTypeName,
+			currencyTypeName: line.currencyTypeName
+				? line.currencyTypeName
+				: line.name,
 			receive: {
-				value: line.receive ? line.receive.value : 0,
+				value: line.chaosEquivalent ? line.chaosEquivalent : line.chaosValue,
 			},
 		})
 	})

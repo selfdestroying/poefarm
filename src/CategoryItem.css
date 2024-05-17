@@ -1,0 +1,24 @@
+.link-item {
+	display: flex;
+	align-items: center;
+	border-radius: 8px;
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	font-weight: 500;
+	border: 1px solid transparent;
+	transition: border-color 300ms;
+}
+
+.link-item:hover {
+	border-color: #646cff;
+}
+
+.link {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.active {
+	background-color: #1a1a1a;
+}
