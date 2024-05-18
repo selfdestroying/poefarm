@@ -96,4 +96,7 @@ button:focus-visible {
 	gap: 12px;
 	height: fit-content;
 	flex: 1;
+	@media screen and (max-width: 768px) {
+		flex: 0;
+	}
 }
